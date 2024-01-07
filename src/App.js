@@ -1,9 +1,10 @@
 import { Suspense, lazy } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Home from './Home';
+import Loading from './component/Loading';
 import Navbar from './component/Navbar';
 import Footer from './component/Footer';
-import useFetch from 'util/useFetch';
+import useFetch from './util/useFetch';
 
 function App() {
   /* get 메소드를 통해 데이터를 받아오는 useEffect hook은 컴포넌트 내 여기저기 존재하고 있습니다. */
@@ -22,7 +23,7 @@ function App() {
       <div className="app">
         <Navbar />
         <div className="content">
-          <Suspense fallback={<div>Loading...</div>}>
+          <Suspense fallback={<Loading />}>
             <Routes>
               <Route
                 exact

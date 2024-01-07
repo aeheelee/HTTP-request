@@ -30,7 +30,7 @@ const useFetch = (url) => {
     }, 1000);
   }, [endPoint]);
 
-  return [blogs, setBlogs, isPending, error]; /* return 문을 작성해주세요. */
+  return [blogs, isPending, error]; /* return 문을 작성해주세요. */
 };
 
 export default useFetch;
