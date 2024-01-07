@@ -30,7 +30,10 @@ function App() {
                 path="/"
                 element={<Home blogs={blogs} isPending={isPending} />}
               />
-              <Route path="/create" element={<CreateBlogComponent />} />
+              <Route
+                path="/create"
+                element={<CreateBlogComponent data={blogs} />}
+              />
               <Route path="/blogs/:id" element={<BlogDetailsComponent />} />
               <Route path="/blogs/:id" element={<NotFoundComponent />} />
             </Routes>
