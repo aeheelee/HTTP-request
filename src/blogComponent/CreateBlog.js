@@ -12,10 +12,7 @@ const CreateBlog = ({ data }) => {
     e.preventDefault();
     /* 등록 버튼을 누르면 게시물이 등록이 되며 home으로 리다이렉트 되어야 합니다. */
     /* 작성한 내용과 useNavigate를 이용하여 handleSubmit의 로직을 작성해보세요. */
-    console.log(e.type);
-
     const newBlog = {
-      id: data.length + 1,
       title: title,
       body: body,
       author: author,
@@ -31,8 +28,9 @@ const CreateBlog = ({ data }) => {
     })
       .then((response) => {
         if (response.ok) {
-          console.log('블로그 등록을 완료하였습니다.');
+          console.log(e.type);
           navigate('/');
+          window.location.reload();
         }
       })
       .catch((error) => {
