@@ -38,8 +38,26 @@ const BlogDetails = () => {
     /* 하트를 누르면 home에서 새로고침을 했을 때 숫자가 올라가야 합니다. */
     /* isLike와 blog.likes를 이용하여 handleLikeClick의 로직을 작성해주세요. */
     setIsLike((prev) => !prev);
+
+    const newLikes = blog.likes + 1;
     // setBlogs((prev) => ({ ...prev, likes: prev.likes }));
-    console.log('like!');
+    fetch(`http://localhost:3001/blogs/${id}`, {
+      method: 'PATCH',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        likes: newLikes,
+      }),
+    })
+      .then((response) => {
+        if (response.ok) {
+          console.log('like!');
+        }
+      })
+      .catch((error) => {
+        console.error(error.message);
+      });
   };
 
   return (
@@ -53,7 +71,7 @@ const BlogDetails = () => {
           <div>{blog.body}</div>
           <button onClick={handleLikeClick}>
             {/* isLike에 의해 조건부 렌더링으로 빨간 하트(❤️)와 하얀 하트(🤍)가 번갈아 보여야 합니다. */}
-            {isLike ? '❤️' : '🤍'}
+            {!isLike ? '❤️' : '🤍'}
           </button>
           <button onClick={handleDeleteClick}>delete</button>
         </article>
